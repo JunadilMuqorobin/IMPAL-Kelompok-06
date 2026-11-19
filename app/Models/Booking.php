@@ -7,8 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     protected $table = 'booking';
+
     protected $primaryKey = 'idBooking';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     public $timestamps = false;
+
+    protected $fillable = [
+        'idBooking',
+        'idMember',
+        'idBuku',
+        'waktuBooking',
+        'posisiAntrian',
+        'statusBooking',
+    ];
 
     public function buku()
     {

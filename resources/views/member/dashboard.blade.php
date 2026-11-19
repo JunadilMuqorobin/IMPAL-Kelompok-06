@@ -14,10 +14,13 @@
     <!-- Top Navigation Bar -->
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-5">
                 <a href="{{ route('member.dashboard') }}" class="flex items-center gap-2">
                     <div class="bg-blue-600 text-white font-bold px-2.5 py-1 rounded-lg text-lg">BB</div>
                     <span class="text-xl font-bold text-blue-600">BukuBook</span>
+                </a>
+                <a href="{{ route('member.books.index') }}" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">
+                    Katalog Buku
                 </a>
             </div>
 
@@ -178,9 +181,9 @@
                 @else
                     <div class="text-center py-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                         <p class="text-slate-400 text-sm">Kamu sedang tidak meminjam buku apa pun saat ini.</p>
-                        <button @click="activeTab = 'katalog'" class="mt-3 px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl hover:bg-blue-700 transition">
+                        <a href="{{ route('member.books.index') }}" class="mt-3 inline-block px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl hover:bg-blue-700 transition">
                             Cari Buku di Katalog
-                        </button>
+                        </a>
                     </div>
                 @endif
             </div>
@@ -228,9 +231,14 @@
 
             <!-- Tab 3: Katalog Buku -->
             <div x-show="activeTab === 'katalog'" class="space-y-6">
+                <div class="flex justify-end">
+                    <a href="{{ route('member.books.index') }}" class="text-xs font-semibold text-blue-600 hover:underline">
+                        Lihat katalog lengkap →
+                    </a>
+                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     @foreach($katalogBuku as $buku)
-                        <div class="border border-slate-200 rounded-2xl p-5 hover:border-blue-300 transition bg-slate-50/50 flex flex-col justify-between">
+                        <a href="{{ route('member.books.show', $buku->idBuku) }}" class="border border-slate-200 rounded-2xl p-5 hover:border-blue-300 transition bg-slate-50/50 flex flex-col justify-between">
                             <div class="space-y-2">
                                 <span class="px-2.5 py-0.5 text-[10px] font-bold bg-blue-100 text-blue-700 rounded-full">
                                     {{ $buku->kategori }}
@@ -243,7 +251,7 @@
                                 <span class="text-xs font-medium text-slate-600">Status: <strong>{{ $buku->status }}</strong></span>
                                 <span class="text-xs text-amber-500 font-bold">★ {{ $buku->rating }}</span>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>

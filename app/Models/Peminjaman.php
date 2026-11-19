@@ -8,8 +8,24 @@ class Peminjaman extends Model
 {
     // Deklarasikan nama tabel secara eksplisit
     protected $table = 'peminjaman';
+
     protected $primaryKey = 'idPeminjaman'; // Sesuaikan jika PK menggunakan nama kustom
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     public $timestamps = false;
+
+    protected $fillable = [
+        'idPeminjaman',
+        'idMember',
+        'idBuku',
+        'tanggalPinjam',
+        'batasKembali',
+        'tanggalKembali',
+        'statusPengembalian',
+    ];
 
     public function buku()
     {

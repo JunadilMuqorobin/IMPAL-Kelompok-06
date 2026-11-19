@@ -7,8 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Ulasan extends Model
 {
     protected $table = 'ulasan';
+
     protected $primaryKey = 'idUlasan';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     public $timestamps = false;
+
+    protected $fillable = [
+        'idUlasan',
+        'idMember',
+        'idBuku',
+        'nilaiRating',
+        'komentar',
+        'tanggalUlasan',
+    ];
 
     public function buku()
     {

@@ -7,9 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Member extends Authenticatable
 {
     protected $table = 'member';
+
     protected $primaryKey = 'idMember';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -20,7 +24,7 @@ class Member extends Authenticatable
         'tipeMember',
         'maxPinjam',
         'durasiPinjamHari',
-        'isPremium'
+        'isPremium',
     ];
 
     protected $hidden = ['kataSandi'];
@@ -29,5 +33,20 @@ class Member extends Authenticatable
     public function getAuthPassword()
     {
         return $this->kataSandi;
+    }
+
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class, 'idMember', 'idMember');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'idMember', 'idMember');
+    }
+
+    public function ulasans()
+    {
+        return $this->hasMany(Ulasan::class, 'idMember', 'idMember');
     }
 }
