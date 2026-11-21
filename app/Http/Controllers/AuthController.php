@@ -46,12 +46,12 @@ class AuthController extends Controller
     public function registerMember(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:100',
+            'nama' => 'required|string|min:3|max:100',
             'email' => 'required|email|unique:member,email',
-            'kataSandi' => 'required|min:6',
+            'kataSandi' => 'required|min:8',
         ], [
             'email.unique' => 'Email ini sudah terdaftar pada sistem.',
-            'kataSandi.min' => 'Kata sandi minimal 6 karakter.',
+            'kataSandi.min' => 'Kata sandi minimal 8 karakter.',
         ]);
 
         // Auto-generate idMember (Contoh: M001, M002, dst)

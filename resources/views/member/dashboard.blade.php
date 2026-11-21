@@ -56,7 +56,7 @@
         <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div class="space-y-2 max-w-xl z-10">
                 <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold backdrop-blur-md">Panel Anggota</span>
-                <h1 class="text-2xl sm:text-3xl font-extrabold">Halo, {{ $member->nama }}! 👋</h1>
+                <h1 class="text-2xl sm:text-3xl font-extrabold">Halo, {{ $member->nama }}!</h1>
                 <p class="text-blue-100 text-sm leading-relaxed">
                     @if($member->isPremium)
                         Akun Premium kamu aktif! Kamu bisa meminjam hingga <strong>5 buku</strong> sekaligus dengan masa durasi <strong>30 hari</strong>.
@@ -69,9 +69,9 @@
             @if(!$member->isPremium)
                 <div class="z-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center sm:text-right">
                     <p class="text-xs text-blue-100 mb-2">Ingin menambah kuota & akses booking?</p>
-                    <span class="inline-block px-4 py-2 bg-amber-400 text-slate-900 font-bold text-xs rounded-xl shadow">
-                        Upgrade Premium
-                    </span>
+                    <button class="inline-block px-4 py-2 bg-amber-400 text-slate-900 font-bold text-xs rounded-xl shadow hover:bg-amber-500 transition">
+                        <a href="{{ route('member.premium.index') }}">Upgrade Premium</a>
+                    </button>
                 </div>
             @endif
         </div>
@@ -130,19 +130,19 @@
                 <button @click="activeTab = 'peminjaman'" 
                     :class="activeTab === 'peminjaman' ? 'border-blue-600 text-blue-600 font-bold' : 'border-transparent text-slate-400 hover:text-slate-600 font-medium'"
                     class="pb-4 border-b-2 text-sm transition whitespace-nowrap flex items-center gap-2">
-                    <span>📖</span> Peminjaman Aktif Saya ({{ $peminjamanAktif->count() }})
+                    <span></span> Peminjaman Aktif Saya ({{ $peminjamanAktif->count() }})
                 </button>
 
                 <button @click="activeTab = 'booking'" 
                     :class="activeTab === 'booking' ? 'border-blue-600 text-blue-600 font-bold' : 'border-transparent text-slate-400 hover:text-slate-600 font-medium'"
                     class="pb-4 border-b-2 text-sm transition whitespace-nowrap flex items-center gap-2">
-                    <span>📌</span> Antrean Booking ({{ $bookingAktif->count() }})
+                    <span></span> Antrean Booking ({{ $bookingAktif->count() }})
                 </button>
 
                 <button @click="activeTab = 'katalog'" 
                     :class="activeTab === 'katalog' ? 'border-blue-600 text-blue-600 font-bold' : 'border-transparent text-slate-400 hover:text-slate-600 font-medium'"
                     class="pb-4 border-b-2 text-sm transition whitespace-nowrap flex items-center gap-2">
-                    <span>🔍</span> Jelajah Katalog Buku
+                    <span></span> Jelajah Katalog Buku
                 </button>
             </div>
 
