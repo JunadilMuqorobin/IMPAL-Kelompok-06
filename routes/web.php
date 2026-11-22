@@ -31,3 +31,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+use App\Http\Controllers\PembayaranDendaController;
+
+Route::prefix('admin/denda')->name('denda.')->group(function () {
+    Route::get('/', [PembayaranDendaController::class, 'index'])->name('index');
+    Route::get('/bayar', [PembayaranDendaController::class, 'create'])->name('create');
+    Route::post('/bayar', [PembayaranDendaController::class, 'store'])->name('store');
+    Route::get('/{idDenda}', [PembayaranDendaController::class, 'show'])->name('show');
+});
